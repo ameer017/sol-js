@@ -1,0 +1,25 @@
+{
+  "name": "blockchain-introjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon Blockchain.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ameer017/sol-js.git"
+  },
+  "author": "al_ameer",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ameer017/sol-js/issues"
+  },
+  "homepage": "https://github.com/ameer017/sol-js#readme",
+  "dependencies": {
+    "sha256": "^0.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
