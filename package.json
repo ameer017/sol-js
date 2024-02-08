@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon Blockchain.js"
+    "dev": "nodemon test.js"
   },
   "repository": {
     "type": "git",
