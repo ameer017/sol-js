@@ -39,6 +39,7 @@ class Blockchain {
   //   get last block
   getLastBlock() {
     return this.chain[this.chain.length - 1];
+    //this in the new block will serve as the previousBlockHash
   }
 
   //   generate hash
