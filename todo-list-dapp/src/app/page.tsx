@@ -1,9 +1,15 @@
-import React from 'react'
+"use client";
+
+import React, { useState, useEffect, useContext } from "react";
+import { ToDoListContext } from "./context/ToDoListApp";
+// import {MdVerified} from ""
 
 const page = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  const { checkIfWalletIsConnect } = useContext(ToDoListContext);
+  useEffect(() => {
+    checkIfWalletIsConnect;
+  }, []);
+  return <div>Home</div>;
+};
 
-export default page
+export default page;
