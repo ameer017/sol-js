@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 
 async function main() {
-  const todolist = await hre.ethers.deployContract("ToDoListApp");
+  const todolist = await hre.ethers.deployContract("ToDoList");
   await todolist.waitForDeployment();
   console.log(`Cupcake vending machine deployed to ${todolist.target}`);
 }

@@ -30,3 +30,7 @@ Events:
 --> getAddress(): Returns an array of addresses representing all creators.
 --> getMessages(): Returns an array of strings representing all messages.
 --> toggle(address _creator): Toggles the completion status of the to-do list item associated with the specified creator address.
+
+# Problems:
+
+It lacks certain features such as removing items or updating existing items, which might be useful for a more comprehensive to-do list application. Additionally, it does not implement any access control mechanisms, allowing any user to interact with the contract's functions.
