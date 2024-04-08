@@ -1,0 +1,32 @@
+This contract provides basic functionality for managing a to-do list, including creating new items, retrieving item data, and toggling completion status.
+
+This Solidity contract, named ToDoList, is designed to manage a simple to-do list. It has the following key components:
+
+# State Variables:
+
+--> _idUser: An unsigned integer to keep track of the number of users.
+--> ownerOfContract: Address variable representing the owner of the contract.
+--> creators: An array of addresses representing the creators of to-do list items.
+--> message: An array of strings representing the messages associated with each to-do list item.
+--> messageId: An array of uint256 representing the IDs associated with each to-do list item.
+--> toDoListApps: A mapping from addresses to ToDoListApp struct instances, storing the to-do list data for each user.
+
+# Struct:
+
+--> ToDoListApp: A struct representing a to-do list item, containing the account address, user ID, message, and completion status.
+Events:
+
+--> ToDoEvent: An event emitted when a new to-do list item is created.
+
+# Constructor:
+
+--> Sets the ownerOfContract variable to the address of the contract deployer.
+
+# Functions:
+
+--> inc(): An internal function to increment the _idUser counter.
+--> createList(string calldata _message): Creates a new to-do list item with the provided message for the calling user.
+--> getCreatorData(address _address): Retrieves the to-do list data associated with the specified address.
+--> getAddress(): Returns an array of addresses representing all creators.
+--> getMessages(): Returns an array of strings representing all messages.
+--> toggle(address _creator): Toggles the completion status of the to-do list item associated with the specified creator address.
