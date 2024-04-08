@@ -1,14 +1,17 @@
 "use client";
 
-
 import React, { useState, useEffect } from "react";
-import Web3Model from "web3modal";
+import Web3Modal from "web3modal";
 
 import { toDoListAddress, toDoListABI } from "../context/constant";
-import { ethers } from "ethers";
 
-const fetchContract = (signerOrProvider) =>
-  new ethers.Contract(toDoListAddress, toDoListABI, signerOrProvider);
+
+
+const fetchContract = (web3) => {
+    const contractInstance = new web3.eth.Contract(toDoListABI, toDoListAddress);
+    return contractInstance;
+  };
+  
 
 export const ToDoListContext = React.createContext();
 
@@ -29,19 +32,37 @@ export const ToDoListProvider = ({ children }) => {
 
     if (account.length) {
       setCurrentAccount(account[0]);
-      console.log(account[0] )
+      console.log(account[0]);
     } else {
       setError("Please install metamask, reload and connect");
     }
   };
 
-//   useEffect(() => {
-//     checkIfWalletIsConnect();
-//   }, []);
+  // connect wallet
+
+  const connectWallet = async () => {
+    if (!window.ethereum) return setError("Please install metamask");
+
+    const account = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+
+    setCurrentAccount(account[0]);
+  };
+
+  // Interacting with smart contract
+  const toDoList = async (message) => {
+    try {
+        const web3modal = new Web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection)
+    } catch (error) {
+        setError("Something went wrong")
+    }
+  }
 
   return (
-    <ToDoListContext.Provider value={{checkIfWalletIsConnect}}>{children}</ToDoListContext.Provider>
+    <ToDoListContext.Provider value={{ checkIfWalletIsConnect, connectWallet }}>
+      {children}
+    </ToDoListContext.Provider>
   );
 };
-
-
