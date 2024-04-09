@@ -4,14 +4,7 @@ import React, { useState, useEffect } from "react";
 import Web3Modal from "web3modal";
 
 import { toDoListAddress, toDoListABI } from "../context/constant";
-
-
-
-const fetchContract = (web3) => {
-    const contractInstance = new web3.eth.Contract(toDoListABI, toDoListAddress);
-    return contractInstance;
-  };
-  
+import Web3 from "web3";
 
 export const ToDoListContext = React.createContext();
 
@@ -53,12 +46,26 @@ export const ToDoListProvider = ({ children }) => {
   // Interacting with smart contract
   const toDoList = async (message) => {
     try {
-        const web3modal = new Web3Modal.connect();
-        const provider = new ethers.providers.Web3Provider(connection)
+      const web3Modal = new Web3Modal();
+      const provider = await web3Modal.connect();
+
+      const web3 = new Web3(provider);
+
+      const contract = new web3.eth.Contract(toDoListABI, toDoListAddress);
+
+      const account = await web3.eth.getAccounts();
+
+      // Execute contract functions
+      const result = await contract.methods
+        .createList(message)
+        .send({ from: account[0] });
+
+      console.log("Transaction Result:", result);
     } catch (error) {
-        setError("Something went wrong")
+      console.error("Error:", error);
+      setError("Something went wrong");
     }
-  }
+  };
 
   return (
     <ToDoListContext.Provider value={{ checkIfWalletIsConnect, connectWallet }}>
